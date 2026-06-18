@@ -1963,9 +1963,9 @@ int lfs_rename(lfs_t *lfs, const char *oldpath, const char *newpath) {
         err = lfs_dir_fetch(lfs, &dir, preventry.d.u.dir);
         if (err) {
             return err;
-          } else if (dir.d.size != sizeof(dir.d)+4) {
+        } else if (dir.d.size != sizeof(dir.d)+4) {
             return LFS_ERR_NOTEMPTY;
-          }
+        }
     }
 
     // move to new location
@@ -1989,10 +1989,10 @@ int lfs_rename(lfs_t *lfs, const char *oldpath, const char *newpath) {
     // fetch old pair again in case dir block changed
     lfs->moving = true;
     err = lfs_dir_find(lfs, &oldcwd, &oldentry, &oldpath);
+    lfs->moving = false;
     if (err) {
         return err;
     }
-    lfs->moving = false;
 
     // remove old entry
     err = lfs_dir_remove(lfs, &oldcwd, &oldentry);
